@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "styled-components";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom"
+
+import Bret from './features/bret/bret';
+import Home from './features/home/home';
 
 function App() {
+
+  const theme = {
+    colors: {
+      background: {
+        main: '#FFFFFF'
+      },
+      primary: {
+        main: '#2EA44F',
+        light: '#a3d4b1',
+        text: 'black'
+      }
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        {/* <FullScreen> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/bret" element={<Bret />} />
+        </Routes>
+        {/* </FullScreen> */}
+      </ThemeProvider>
     </div>
   );
 }
